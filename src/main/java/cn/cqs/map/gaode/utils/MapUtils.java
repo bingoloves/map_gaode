@@ -32,7 +32,7 @@ public class MapUtils {
      * 把Point对象转化为LatLng对象
      */
     public static LatLng convertToLatLng(Point point) {
-        return new LatLng(point.getLatitude(), point.getLongitude());
+        return new LatLng(point.latitude, point.longitude);
     }
 
     /**********************************************************移动地图**************************************/
