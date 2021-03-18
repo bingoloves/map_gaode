@@ -19,7 +19,7 @@ dependencies {
 
 **使用示例**
 
-AndroidManifest.xml添加自己申请的KEY
+可以不使用，也可以注明支持的架构
 ```grade
 android {
     defaultConfig {
@@ -30,6 +30,8 @@ android {
     }
 }
 ```
+
+AndroidManifest.xml添加自己申请的KEY(只是需要GPS坐标可以不填写)
 ```xml
  <meta-data
      android:name="com.amap.api.v2.apikey"
