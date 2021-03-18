@@ -43,9 +43,8 @@ locationManager.setLocationListener(new OnLocationListener() {
       @Override
       public void onChange(AMapLocation aMapLocation) {
           if (aMapLocation.getErrorCode() == 0) {
-             LogUtils.d("定位成功");
              LatLng currentLatLng = new LatLng(aMapLocation.getLatitude(), aMapLocation.getLongitude());
-             locationLiveData.postValue(currentLatLng);
+             LogUtils.d("定位成功:"+ LocationUtils.getLocationLog(aMapLocation));
           }else{
                LogUtils.d("定位失败");
           }
