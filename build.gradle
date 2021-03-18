@@ -1,0 +1,68 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+//uploadArchives{
+//    repositories.mavenDeployer{
+//        //本地仓库路径
+//        repository(url: uri('../repo'))
+//        // 唯一标识
+//        pom.groupId = "cn.cqs"
+//        // 项目名称
+//        pom.artifactId = "location"
+//        // 版本号
+//        pom.version = "1.0.0"
+//    }
+//}
+/**单独配置外层配置，用于发布jitpack*/
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        //发布私有在线库
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
+    }
+}
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+/**单独配置外层配置，用于发布jitpack*/
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 28
+//        ndk {
+//            //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
+//            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86","x86_64"
+//        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    //3D地图so及jar
+    api 'com.amap.api:3dmap:latest.integration'
+    //定位功能
+    api 'com.amap.api:location:latest.integration'
+    //搜索功能
+    api 'com.amap.api:search:latest.integration'
+    //下方则为指定具体版本号
+//    implementation 'com.amap.api:3dmap:5.0.0'
+//    implementation 'com.amap.api:location:3.3.0'
+//    implementation 'com.amap.api:search:5.0.0'
+}
